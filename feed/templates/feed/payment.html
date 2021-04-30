@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    #pay{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: solid 2px black;
+    }
+</style>
+
+{%endblock%}
+
+{% block body %}
+
+<div class= "adjust"style="margin-top: 20px;">
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+  
+        <div class="section-title">
+          <h2>Pay Here</h2>
+          <!-- <p>"”</p> -->
+          
+        </div>
+    </section>
+
+
+<div id="pay" class="container">
+    <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ATqJxi7g-RC9SeCyDBVg1rZR5Y56442OQbgcIKgchWthIrqUuSOKyyXscL4SN1e_3Z0-NcEsDAyIu-q8&currency=USD"></script>
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '88.44'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
+</div>
+</div>
+{% endblock %}
