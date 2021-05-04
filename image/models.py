@@ -17,7 +17,7 @@ class Image(models.Model):
     ifsc=models.CharField(max_length=100,default="")
     accno=models.CharField(max_length=100,default="")
     image=models.ImageField(upload_to="img/%y")
-    desc=models.TextField(max_length=200,default="")
+    desc=models.TextField(max_length=20000,default="")
     ngo_contact_no=models.CharField(max_length=12,default="")
     def __str__(self):
         return self.caption

@@ -36,6 +36,7 @@ def stationary(request):
         type = request.POST.get("type",'')
         stat = DonateStationary(email = email , quantity = quantity , type = type)
         stat.save()
+        return redirect('/feed/checkout/')
     return render(request,'feed/donatestationary.html')
 
 @login_required(login_url='/ngo/')
@@ -46,6 +47,8 @@ def food(request):
         type = request.POST.get("type",'')
         food = DonateFood(email = email , quantity = quantity , type = type)
         food.save()
+        return redirect('/feed/checkout/')
+
     return render(request,'feed/donatefood.html')
 
 @login_required(login_url='/ngo/')
@@ -56,6 +59,8 @@ def clothes(request):
         type = request.POST.get("type",'')
         cloth = DonateClothes(email = email , quantity = quantity , type = type)
         cloth.save()
+        return redirect('/feed/checkout/')
+
     return render(request,'feed/donateclothes.html')
 
 @login_required(login_url='/ngo/')
@@ -66,6 +71,8 @@ def time(request):
         type = request.POST.get("type",'')
         time = DonateTime(email = email , date = date , type = type)
         time.save()
+        return redirect('/feed/checkout/')
+
     return render(request,'feed/donatetime.html')
 
 @login_required(login_url='/ngo/')
@@ -77,7 +84,7 @@ def blood(request):
         disease = request.POST.get("disease",'')
         blood = DonateBlood(email = email , date = date , type = type,disease=disease)
         blood.save()
-        return redirect(request,'feed/checkout.html')
+        return redirect('/feed/checkout/')
     return render(request,'feed/donateblood.html')
 
 @login_required(login_url='/ngo/')
